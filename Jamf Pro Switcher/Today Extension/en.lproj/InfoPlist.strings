@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "Jamf Pro Switcher";
+"com.apple.notificationcenter.widget.description" = "Jamf Pro Switcher";
+
