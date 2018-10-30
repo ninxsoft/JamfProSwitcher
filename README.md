@@ -10,9 +10,10 @@ A utility that quickly switches between multiple Jamf Pro Server instances:
 *   [x] Optionally close Jamf Pro Apps (Jamf Admin, Jamf Imaging, Jamf Remote, Recon) before switching.
 *   [x] Double click a selected Jamf Pro Server to be taken to the respective login page.
 *   [x] Today Extension:
-    | Light Appearance | Dark Appearance |
-    | :--------------: | :-------------: |
-    | ![Today Extension - Light Appearance](Readme%20Resources/Today%20Extension%20-%20Light%20Appearance.png) | ![Today Extension - Dark Appearance](Readme%20Resources/Today%20Extension%20-%20Dark%20Appearance.png) |
+
+| Light Appearance | Dark Appearance |
+| :--------------: | :-------------: |
+| ![Today Extension - Light Appearance](Readme%20Resources/Today%20Extension%20-%20Light%20Appearance.png) | ![Today Extension - Dark Appearance](Readme%20Resources/Today%20Extension%20-%20Dark%20Appearance.png) |
 
 ## Build Requirements
 *   Written in Swift 4.2.
