@@ -33,7 +33,7 @@ Grab the latest version of Jamf Pro Switcher from the [releases page](https://gi
     *   Initial release
 
 ## License
-    Copyright © 2018 Nindi Gill
+    Copyright © 2019 Nindi Gill
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
