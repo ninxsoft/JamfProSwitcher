@@ -13,7 +13,7 @@ class JamfProServer: NSObject {
   var name = ""
   var address = ""
   var version = ""
-  
+
   convenience init(name: String, address: String, version: String) {
     self.init()
     self.name = name
