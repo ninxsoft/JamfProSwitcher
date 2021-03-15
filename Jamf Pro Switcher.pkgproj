@@ -443,6 +443,8 @@
 			</dict>
 			<key>PAYLOAD_TYPE</key>
 			<integer>0</integer>
+			<key>PRESERVE_EXTENDED_ATTRIBUTES</key>
+			<false/>
 			<key>SHOW_INVISIBLE</key>
 			<false/>
 			<key>SPLIT_FORKS</key>
@@ -451,6 +453,21 @@
 			<false/>
 			<key>VERSION</key>
 			<integer>5</integer>
+		</dict>
+		<key>PACKAGE_SCRIPTS</key>
+		<dict>
+			<key>POSTINSTALL_PATH</key>
+			<dict>
+				<key>PATH_TYPE</key>
+				<integer>1</integer>
+			</dict>
+			<key>PREINSTALL_PATH</key>
+			<dict>
+				<key>PATH_TYPE</key>
+				<integer>1</integer>
+			</dict>
+			<key>RESOURCES</key>
+			<array/>
 		</dict>
 		<key>PACKAGE_SETTINGS</key>
 		<dict>
@@ -461,7 +478,7 @@
 			<key>FOLLOW_SYMBOLIC_LINKS</key>
 			<false/>
 			<key>IDENTIFIER</key>
-			<string>com.ninxsoft.jamfproswitcher</string>
+			<string>com.ninxsoft.pkg.jamfproswitcher</string>
 			<key>LOCATION</key>
 			<integer>0</integer>
 			<key>NAME</key>
@@ -477,7 +494,7 @@
 			<key>USE_HFS+_COMPRESSION</key>
 			<false/>
 			<key>VERSION</key>
-			<string>1.0</string>
+			<string>2.0</string>
 		</dict>
 		<key>PROJECT_COMMENTS</key>
 		<dict>
@@ -493,6 +510,13 @@
 				<string>build</string>
 				<key>PATH_TYPE</key>
 				<integer>1</integer>
+			</dict>
+			<key>CERTIFICATE</key>
+			<dict>
+				<key>NAME</key>
+				<string>Developer ID Installer: Nindi Gill (7K3HVCLV7Z)</string>
+				<key>PATH</key>
+				<string>/Users/ninxsoft/Library/Keychains/login.keychain</string>
 			</dict>
 			<key>EXCLUDED_FILES</key>
 			<array>
@@ -663,7 +687,7 @@
 				</dict>
 			</array>
 			<key>NAME</key>
-			<string>Jamf Pro Switcher 1.0</string>
+			<string>Jamf Pro Switcher 2.0</string>
 			<key>PAYLOAD_ONLY</key>
 			<false/>
 		</dict>

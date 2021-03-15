@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/ninxsoft/Dropbox/Jamf Pro Selector/Jamf Pro Switcher.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
