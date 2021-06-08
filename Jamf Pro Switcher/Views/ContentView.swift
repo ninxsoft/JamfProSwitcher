@@ -9,21 +9,30 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var model: Model
+    @State private var searchString: String = ""
     private let width: CGFloat = 400
-    private let height: CGFloat = 400
+    private let height: CGFloat = 600
 
     var body: some View {
         VStack(spacing: 0) {
-            List {
-                ForEach(model.servers) { server in
-                    ServerRow(server: server, selectedServer: $model.selectedServer)
-                        .tag(server)
+            Form {
+                TextField("Search", text: $searchString)
+                List {
+                    ForEach(Array(filteredServers().enumerated()), id: \.offset) { index, server in
+                        ServerRow(server: server, selectedServer: $model.selectedServer)
+                            .tag(server)
+                            .contextMenu {
+                                Button("Delete") {
+                                    onDelete(offsets: IndexSet(integer: index))
+                                }
+                            }
+                    }
+                    .onMove(perform: onMove)
+                    .onDelete(perform: onDelete)
                 }
-                .onMove(perform: onMove)
-                .onDelete(perform: onDelete)
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
-            Divider()
+            .padding([.top, .horizontal])
             HStack {
                 Spacer()
                 Button("Add Server") {
@@ -58,6 +67,21 @@ struct ContentView: View {
     private func onDelete(offsets: IndexSet) {
         model.servers.remove(atOffsets: offsets)
         model.save()
+    }
+
+    private func filteredServers() -> [Server] {
+
+        guard !searchString.isEmpty else {
+            return model.servers
+        }
+
+        let filteredServers: [Server] = model.servers.filter {
+            $0.name.lowercased().contains(searchString) ||
+            $0.address.lowercased().contains(searchString) ||
+            $0.version.lowercased().contains(searchString)
+        }
+
+        return filteredServers
     }
 }
 
