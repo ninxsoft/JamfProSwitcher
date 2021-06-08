@@ -6,20 +6,20 @@ A Mac utility that quickly switches between multiple Jamf Pro Server instances:
 ## Build Requirements
 *   Swift **5.4**.
 *   Xcode **12.0**.
-*   Runs on macOS Big Sur **11.0**.
+*   Runs on macOS Big Sur **11.0** and later.
 
 ## Download
 Grab the latest version of **Jamf Pro Switcher** from the [releases page](https://github.com/ninxsoft/JamfProSwitcher/releases).
-
-**Note:** Version **2.0** requires **macOS Big Sur** or later.
-
-If you need to run **Jamf Pro Switcher** on an older operating system, you can still use version **1.x**.
 
 ## Credits / Thank You
 *   Project created and maintained by Nindi Gill ([ninxsoft](https://github.com/ninxsoft)).
 *   Marcus Ransom ([@marcusransom](https://twitter.com/marcusransom)) for his advice and help with testing.
 
 ## Version History
+*   2.1
+    *   Search / filter by Server Name, Address or Jamf Pro version.
+    *   Option-click (as well as swipe) to delete a Server.
+    *   Updated accent color and minor UI tweaks.
 *   2.0
     *   Complete app rewrite - visual design overhaul and modern SwiftUI App Life-Cycle
     *   Shiny new app icon!
