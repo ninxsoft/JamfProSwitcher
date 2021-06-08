@@ -16,29 +16,16 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                if #available(macOS 12.0, *) {
-                    List {
-                        ForEach(filteredServers()) { server in
-                            ServerRow(server: server, selectedServer: $model.selectedServer)
-                                .tag(server)
-                        }
-                        .onMove(perform: onMove)
-                        .onDelete(perform: onDelete)
+                TextField("Search", text: $searchString)
+                List {
+                    ForEach(filteredServers()) { server in
+                        ServerRow(server: server, selectedServer: $model.selectedServer)
+                            .tag(server)
                     }
-                    .listStyle(PlainListStyle())
-                    .searchable("Search", text: $searchString)
-                } else {
-                    TextField("Search", text: $searchString)
-                    List {
-                        ForEach(filteredServers()) { server in
-                            ServerRow(server: server, selectedServer: $model.selectedServer)
-                                .tag(server)
-                        }
-                        .onMove(perform: onMove)
-                        .onDelete(perform: onDelete)
-                    }
-                    .listStyle(PlainListStyle())
+                    .onMove(perform: onMove)
+                    .onDelete(perform: onDelete)
                 }
+                .listStyle(PlainListStyle())
             }
             .padding([.top, .horizontal])
             HStack {
