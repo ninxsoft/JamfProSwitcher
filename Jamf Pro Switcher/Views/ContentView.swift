@@ -9,21 +9,38 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var model: Model
+    @State private var searchString: String = ""
     private let width: CGFloat = 400
-    private let height: CGFloat = 400
+    private let height: CGFloat = 600
 
     var body: some View {
         VStack(spacing: 0) {
-            List {
-                ForEach(model.servers) { server in
-                    ServerRow(server: server, selectedServer: $model.selectedServer)
-                        .tag(server)
+            Form {
+                if #available(macOS 12.0, *) {
+                    List {
+                        ForEach(filteredServers()) { server in
+                            ServerRow(server: server, selectedServer: $model.selectedServer)
+                                .tag(server)
+                        }
+                        .onMove(perform: onMove)
+                        .onDelete(perform: onDelete)
+                    }
+                    .listStyle(PlainListStyle())
+                    .searchable("Search", text: $searchString)
+                } else {
+                    TextField("Search", text: $searchString)
+                    List {
+                        ForEach(filteredServers()) { server in
+                            ServerRow(server: server, selectedServer: $model.selectedServer)
+                                .tag(server)
+                        }
+                        .onMove(perform: onMove)
+                        .onDelete(perform: onDelete)
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .onMove(perform: onMove)
-                .onDelete(perform: onDelete)
             }
-            .listStyle(PlainListStyle())
-            Divider()
+            .padding([.top, .horizontal])
             HStack {
                 Spacer()
                 Button("Add Server") {
@@ -58,6 +75,21 @@ struct ContentView: View {
     private func onDelete(offsets: IndexSet) {
         model.servers.remove(atOffsets: offsets)
         model.save()
+    }
+
+    private func filteredServers() -> [Server] {
+
+        guard !searchString.isEmpty else {
+            return model.servers
+        }
+
+        let filteredServers: [Server] = model.servers.filter {
+            $0.name.lowercased().contains(searchString) ||
+            $0.address.lowercased().contains(searchString) ||
+            $0.version.lowercased().contains(searchString)
+        }
+
+        return filteredServers
     }
 }
 
