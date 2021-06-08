@@ -18,9 +18,14 @@ struct ContentView: View {
             Form {
                 TextField("Search", text: $searchString)
                 List {
-                    ForEach(filteredServers()) { server in
+                    ForEach(Array(filteredServers().enumerated()), id: \.offset) { index, server in
                         ServerRow(server: server, selectedServer: $model.selectedServer)
                             .tag(server)
+                            .contextMenu {
+                                Button("Delete") {
+                                    onDelete(offsets: IndexSet(integer: index))
+                                }
+                            }
                     }
                     .onMove(perform: onMove)
                     .onDelete(perform: onDelete)
