@@ -16,6 +16,8 @@ Grab the latest version of **Jamf Pro Switcher** from the [releases page](https:
 *   Marcus Ransom ([@marcusransom](https://twitter.com/marcusransom)) for his advice and help with testing.
 
 ## Version History
+*   2.1.1
+    *   Servers are now saved when the app Quits.
 *   2.1
     *   Search / filter by Server Name, Address or Jamf Pro version.
     *   Option-click (as well as swipe) to delete a Server.
