@@ -1,4 +1,7 @@
+<img align="left" width="96" height="96" src="Readme%20Resources/App%20Icon.png">
+
 # Jamf Pro Switcher
+
 A Mac utility that quickly switches between multiple Jamf Pro Server instances:
 
 ![Jamf Pro Switcher](Readme%20Resources/Jamf%20Pro%20Switcher.png)
