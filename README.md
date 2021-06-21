@@ -1,4 +1,4 @@
-<img align="left" width="96" height="96" src="Readme%20Resources/App%20Icon.png">
+<img align="left" width="128" height="128" src="Readme%20Resources/App%20Icon.png">
 
 # Jamf Pro Switcher
 
