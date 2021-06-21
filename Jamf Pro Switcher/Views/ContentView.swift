@@ -56,17 +56,14 @@ struct ContentView: View {
     private func add() {
         let server: Server = Server()
         model.servers.append(server)
-        model.save()
     }
 
     private func onMove(source: IndexSet, destination: Int) {
         model.servers.move(fromOffsets: source, toOffset: destination)
-        model.save()
     }
 
     private func onDelete(offsets: IndexSet) {
         model.servers.remove(atOffsets: offsets)
-        model.save()
     }
 
     private func filteredServers() -> [Server] {

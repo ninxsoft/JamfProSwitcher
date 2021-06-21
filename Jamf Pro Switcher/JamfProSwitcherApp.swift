@@ -18,7 +18,7 @@ struct JamfProSwitcherApp: App {
             ContentView(model: model)
         }
         .commands {
-            AppCommands()
+            AppCommands(model: model)
         }
     }
 }
