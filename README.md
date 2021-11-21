@@ -18,7 +18,7 @@ Grab the latest version of **Jamf Pro Switcher** from the [releases page](https:
 
 **Note:** Version **2.2** requires **macOS Monterey 12.0** or later.
 
-If you need to run **Jamf Pro Switcher** on an older operating system, you can still use veresion **2.1.1**.
+If you need to run **Jamf Pro Switcher** on an older operating system, you can still use version **2.1.1**.
 
 ## Credits / Thank You
 
