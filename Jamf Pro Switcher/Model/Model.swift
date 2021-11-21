@@ -9,14 +9,8 @@ import Cocoa
 
 class Model: ObservableObject {
     static let example: Model = Model()
-    static let containerPath: String = "/Containers/com.ninxsoft.jamfproswitcher/Data"
-    static let jamfPropertyListPath: String = "/Preferences/com.jamfsoftware.jss.plist"
-
     @Published var servers: [Server]
     @Published var selectedServer: Server?
-    private var jamfPreferencesPath: String {
-        NSHomeDirectory().replacingOccurrences(of: Model.containerPath, with: Model.jamfPropertyListPath)
-    }
 
     init() {
         servers = []
@@ -30,10 +24,10 @@ class Model: ObservableObject {
             let servers: [Server] = try JSONDecoder().decode([Server].self, from: data)
             self.servers = servers
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
 
-        guard let dictionary: [String: Any] = NSDictionary(contentsOfFile: jamfPreferencesPath) as? [String: Any],
+        guard let dictionary: [String: Any] = NSDictionary(contentsOfFile: .jamfPreferencesPath) as? [String: Any],
             let address: String = dictionary["url"] as? String else {
             return
         }
@@ -56,11 +50,11 @@ class Model: ObservableObject {
     func setServer(_ server: Server?) {
 
         guard let server: Server = server,
-            let dictionary: NSMutableDictionary = NSMutableDictionary(contentsOfFile: jamfPreferencesPath) else {
+            let dictionary: NSMutableDictionary = NSMutableDictionary(contentsOfFile: .jamfPreferencesPath) else {
             return
         }
 
-        let url: URL = URL(fileURLWithPath: jamfPreferencesPath)
+        let url: URL = URL(fileURLWithPath: .jamfPreferencesPath)
         dictionary.setValue(server.address, forKey: "url")
         dictionary.write(to: url, atomically: true)
     }

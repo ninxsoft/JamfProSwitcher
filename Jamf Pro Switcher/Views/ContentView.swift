@@ -15,24 +15,21 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Form {
-                TextField("Search", text: $searchString)
-                List {
-                    ForEach(Array(filteredServers().enumerated()), id: \.offset) { index, server in
-                        ServerRow(server: server, selectedServer: $model.selectedServer)
-                            .tag(server)
-                            .contextMenu {
-                                Button("Delete") {
-                                    onDelete(offsets: IndexSet(integer: index))
-                                }
+            List {
+                ForEach(Array(filteredServers().enumerated()), id: \.offset) { index, server in
+                    ServerRow(server: server, selectedServer: $model.selectedServer)
+                        .tag(server)
+                        .contextMenu {
+                            Button("Delete") {
+                                onDelete(offsets: IndexSet(integer: index))
                             }
-                    }
-                    .onMove(perform: onMove)
-                    .onDelete(perform: onDelete)
+                        }
                 }
-                .listStyle(PlainListStyle())
+                .onMove(perform: onMove)
+                .onDelete(perform: onDelete)
             }
-            .padding([.top, .horizontal])
+            .listStyle(.plain)
+            Divider()
             HStack {
                 Spacer()
                 Button("Add Server") {
@@ -42,6 +39,7 @@ struct ContentView: View {
             .padding()
         }
         .frame(width: width, height: height)
+        .searchable(text: $searchString)
         .onAppear {
             model.updateServerVersions()
         }

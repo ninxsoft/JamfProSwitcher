@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ServerRow: View {
-    @Environment(\.openURL) var openURL: OpenURLAction
     @ObservedObject var server: Server
     @Binding var selectedServer: Server?
     @State private var hoveringOnSelection: Bool = false
@@ -18,33 +17,12 @@ struct ServerRow: View {
     private var version: String {
         "Version: " + server.version
     }
-    private var selected: Bool {
-        server == selectedServer
-    }
-    private var selectedSystemName: String {
-        selected || hoveringOnSelection ? "checkmark.circle.fill" : "circle"
-    }
-    private var openSystemName: String {
-        hoveringOnOpen ? "safari.fill" : "safari"
-    }
 
     var body: some View {
         VStack(spacing: 0) {
             Spacer()
             HStack {
-                Button(action: {
-                    selectedServer = server
-                }, label: {
-                    Image(systemName: selectedSystemName)
-                        .font(.largeTitle)
-                        .foregroundColor(.green)
-                })
-                .buttonStyle(PlainButtonStyle())
-                .onHover { hovering in
-                    withAnimation {
-                        hoveringOnSelection = hovering
-                    }
-                }
+                ServerSelectionButton(server: server, selectedServer: $selectedServer, hoveringOnSelection: $hoveringOnSelection)
                 VStack(alignment: .leading, spacing: spacing) {
                     TextField("Name", text: $server.name)
                         .font(.title3)
@@ -56,33 +34,12 @@ struct ServerRow: View {
                         .font(.caption2)
                 }
                 Spacer()
-                Button(action: {
-                    open()
-                }, label: {
-                    Image(systemName: openSystemName)
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
-                })
-                .buttonStyle(PlainButtonStyle())
-                .onHover { hovering in
-                    withAnimation {
-                        hoveringOnOpen = hovering
-                    }
-                }
+                ServerWebsiteButton(server: server, hoveringOnOpen: $hoveringOnOpen)
             }
             Spacer()
             Divider()
         }
         .frame(minHeight: height, maxHeight: height)
-    }
-
-    private func open() {
-
-        guard let url: URL = URL(string: server.address) else {
-            return
-        }
-
-        openURL(url)
     }
 }
 

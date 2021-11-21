@@ -12,11 +12,12 @@
 		574609D024EC20720000F96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 574609CF24EC20720000F96B /* Assets.xcassets */; };
 		574609DE24EC230A0000F96B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609DD24EC230A0000F96B /* AppDelegate.swift */; };
 		574609E024EC23480000F96B /* AppCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609DF24EC23480000F96B /* AppCommands.swift */; };
-		574609E224EC24190000F96B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609E124EC24190000F96B /* Model.swift */; };
 		574609E624EC24ED0000F96B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609E524EC24ED0000F96B /* Server.swift */; };
 		574609E824EC272A0000F96B /* ServerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609E724EC272A0000F96B /* ServerRow.swift */; };
 		574609EA24EC35300000F96B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609E924EC35300000F96B /* String+Extension.swift */; };
-		5781E017257FBD89004EDE67 /* KeyedDecodingContainer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E016257FBD89004EDE67 /* KeyedDecodingContainer+Extension.swift */; };
+		5747278C274A7007007931FF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5747278B274A7007007931FF /* Model.swift */; };
+		5747278E274AFE1B007931FF /* ServerSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5747278D274AFE1B007931FF /* ServerSelectionButton.swift */; };
+		57472790274B0008007931FF /* ServerWebsiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5747278F274B0008007931FF /* ServerWebsiteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,11 +29,12 @@
 		574609D524EC20720000F96B /* Jamf Pro Switcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Jamf Pro Switcher.entitlements"; sourceTree = "<group>"; };
 		574609DD24EC230A0000F96B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		574609DF24EC23480000F96B /* AppCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommands.swift; sourceTree = "<group>"; };
-		574609E124EC24190000F96B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		574609E524EC24ED0000F96B /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		574609E724EC272A0000F96B /* ServerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerRow.swift; sourceTree = "<group>"; };
 		574609E924EC35300000F96B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		5781E016257FBD89004EDE67 /* KeyedDecodingContainer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Extension.swift"; sourceTree = "<group>"; };
+		5747278B274A7007007931FF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		5747278D274AFE1B007931FF /* ServerSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectionButton.swift; sourceTree = "<group>"; };
+		5747278F274B0008007931FF /* ServerWebsiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerWebsiteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,8 @@
 			children = (
 				574609CD24EC20710000F96B /* ContentView.swift */,
 				574609E724EC272A0000F96B /* ServerRow.swift */,
+				5747278D274AFE1B007931FF /* ServerSelectionButton.swift */,
+				5747278F274B0008007931FF /* ServerWebsiteButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -90,7 +94,7 @@
 		574609E424EC24DE0000F96B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				574609E124EC24190000F96B /* Model.swift */,
+				5747278B274A7007007931FF /* Model.swift */,
 				574609E524EC24ED0000F96B /* Server.swift */,
 			);
 			path = Model;
@@ -99,7 +103,6 @@
 		574609EB24EC35560000F96B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5781E016257FBD89004EDE67 /* KeyedDecodingContainer+Extension.swift */,
 				574609E924EC35300000F96B /* String+Extension.swift */,
 			);
 			path = Extensions;
@@ -116,6 +119,7 @@
 				574609C524EC20710000F96B /* Frameworks */,
 				574609C624EC20710000F96B /* Resources */,
 				574609DB24EC20EA0000F96B /* Run SwiftLint */,
+				57D229FB2749102B0078C2B5 /* Run DrString */,
 			);
 			buildRules = (
 			);
@@ -186,7 +190,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/env bash";
-			shellScript = "if which swiftlint > /dev/null ; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint > /dev/null ; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nexit 0\n";
+		};
+		57D229FB2749102B0078C2B5 /* Run DrString */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run DrString";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env bash";
+			shellScript = "if which drstring > /dev/null ; then\n  drstring check --config-file \"$SRCROOT/.drstring.toml\" || true\nelse\n  echo \"warning: DrString not installed, download from https://github.com/dduan/DrString\"\nfi\n\nexit 0\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -199,11 +221,12 @@
 				574609E624EC24ED0000F96B /* Server.swift in Sources */,
 				574609DE24EC230A0000F96B /* AppDelegate.swift in Sources */,
 				574609E824EC272A0000F96B /* ServerRow.swift in Sources */,
-				5781E017257FBD89004EDE67 /* KeyedDecodingContainer+Extension.swift in Sources */,
+				57472790274B0008007931FF /* ServerWebsiteButton.swift in Sources */,
 				574609CE24EC20710000F96B /* ContentView.swift in Sources */,
-				574609E224EC24190000F96B /* Model.swift in Sources */,
 				574609CC24EC20710000F96B /* JamfProSwitcherApp.swift in Sources */,
 				574609E024EC23480000F96B /* AppCommands.swift in Sources */,
+				5747278C274A7007007931FF /* Model.swift in Sources */,
+				5747278E274AFE1B007931FF /* ServerSelectionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -316,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -335,7 +358,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 211;
+				CURRENT_PROJECT_VERSION = 220;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7K3HVCLV7Z;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -345,8 +368,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.1.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninxsoft.jamfproswitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -363,7 +386,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 211;
+				CURRENT_PROJECT_VERSION = 220;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7K3HVCLV7Z;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -373,8 +396,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.1.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninxsoft.jamfproswitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -16,7 +16,6 @@ class Server: Identifiable, ObservableObject {
         return example
     }
 
-    // swiftlint:disable:next identifier_name
     @Published var id: String = UUID().uuidString
     @Published var name: String
     @Published var address: String
@@ -25,7 +24,7 @@ class Server: Identifiable, ObservableObject {
         URL(string: address)
     }
     var connectionAddress: String {
-        "\(address)/JSSCheckConnection".replacingOccurrences(of: "//", with: "/")
+        "\(address)\(address.hasSuffix("/") ? "" : "/")JSSCheckConnection"
     }
     var dictionary: [String: String] {
         [
@@ -43,9 +42,9 @@ class Server: Identifiable, ObservableObject {
 
     required init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(key: .id, defaultValue: UUID().uuidString)
-        name = try container.decode(key: .name, defaultValue: "")
-        address = try container.decode(key: .address, defaultValue: "")
+        id = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        address = try container.decode(String.self, forKey: .address)
         version = ""
     }
 
@@ -56,29 +55,22 @@ class Server: Identifiable, ObservableObject {
             return
         }
 
-        let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+        do {
+            let string: String = try String(contentsOf: url)
 
-            DispatchQueue.main.async {
-
-                guard let data: Data = data,
-                    let string: String = String(data: data, encoding: .utf8),
-                    string.isValidServerVersion else {
-                    self.version = ""
-                    return
-                }
-
-                self.version = string
+            if string.isValidServerVersion {
+                version = string
             }
+        } catch {
+            version = ""
+            print(error.localizedDescription)
         }
-
-        task.resume()
     }
 }
 
 extension Server: Codable {
 
     private enum CodingKeys: String, CodingKey {
-        // swiftlint:disable:next identifier_name
         case id = "ID"
         case name = "Name"
         case address = "Address"

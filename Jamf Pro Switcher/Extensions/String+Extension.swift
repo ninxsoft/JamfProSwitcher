@@ -10,6 +10,9 @@ import Cocoa
 extension String {
 
     static let homepage: String = "https://github.com/ninxsoft/JamfProSwitcher"
+    static var jamfPreferencesPath: String {
+        NSHomeDirectory() + "/Preferences/com.jamfsoftware.jss.plist"
+    }
 
     var isValidServerAddress: Bool {
         let regex: String = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
