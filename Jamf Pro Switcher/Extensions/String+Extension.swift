@@ -11,7 +11,7 @@ extension String {
 
     static let homepage: String = "https://github.com/ninxsoft/JamfProSwitcher"
     static var jamfPreferencesPath: String {
-        NSHomeDirectory() + "/Preferences/com.jamfsoftware.jss.plist"
+        NSHomeDirectory().replacingOccurrences(of: "Containers/com.ninxsoft.jamfproswitcher/Data", with: "") + "Preferences/com.jamfsoftware.jss.plist"
     }
 
     var isValidServerAddress: Bool {

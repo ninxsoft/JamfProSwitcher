@@ -27,6 +27,10 @@ If you need to run **Jamf Pro Switcher** on an older operating system, you can s
 
 ## Version History
 
+- 2.2.1
+
+  - Fixed a bug where the selected server would not load + save correctly
+
 - 2.2
 
   - Slight UI improvements (including native search bar)
