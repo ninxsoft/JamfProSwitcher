@@ -6,6 +6,16 @@
 	<true/>
 	<key>com.apple.security.network.client</key>
 	<true/>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.jamfsoftware.CasperAdmin</string>
+		<string>com.jamfsoftware.CasperImaging</string>
+		<string>com.jamfsoftware.CasperRemote</string>
+		<string>com.jamfsoftware.JamfAdmin</string>
+		<string>com.jamfsoftware.JamfImaging</string>
+		<string>com.jamfsoftware.JamfRemote</string>
+		<string>com.jamfsoftware.Recon</string>
+	</array>
 	<key>com.apple.security.temporary-exception.files.home-relative-path.read-write</key>
 	<array>
 		<string>/Library/Preferences/com.jamfsoftware.jss.plist</string>

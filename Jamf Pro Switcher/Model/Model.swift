@@ -11,6 +11,7 @@ class Model: ObservableObject {
     static let example: Model = Model()
     @Published var servers: [Server]
     @Published var selectedServer: Server?
+    @Published var quitAppsOnClose: Bool = false
 
     init() {
         servers = []
@@ -27,6 +28,8 @@ class Model: ObservableObject {
             print(error.localizedDescription)
         }
 
+        quitAppsOnClose = UserDefaults.standard.bool(forKey: "QuitAppsOnClose")
+
         guard let dictionary: [String: Any] = NSDictionary(contentsOfFile: .jamfPreferencesPath) as? [String: Any],
             let address: String = dictionary["url"] as? String else {
             return
@@ -38,6 +41,7 @@ class Model: ObservableObject {
     func save() {
         let dictionaries: [[String: String]] = servers.map { $0.dictionary }
         UserDefaults.standard.set(dictionaries, forKey: "JamfProServers")
+        UserDefaults.standard.set(quitAppsOnClose, forKey: "QuitAppsOnClose")
     }
 
     func updateServerVersions() {
