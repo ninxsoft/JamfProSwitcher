@@ -16,7 +16,7 @@ A Mac utility that quickly switches between multiple Jamf Pro Server instances:
 
 Grab the latest version of **Jamf Pro Switcher** from the [releases page](https://github.com/ninxsoft/JamfProSwitcher/releases).
 
-**Note:** Version **2.2** requires **macOS Monterey 12.0** or later.
+**Note:** Version **2.2** and later require **macOS Monterey 12.0** or later.
 
 If you need to run **Jamf Pro Switcher** on an older operating system, you can still use version **2.1.1**.
 
@@ -26,6 +26,10 @@ If you need to run **Jamf Pro Switcher** on an older operating system, you can s
 - Marcus Ransom ([@marcusransom](https://twitter.com/marcusransom)) for his advice and help with testing.
 
 ## Version History
+
+- 2.3
+
+  - Brought back the ability to **Quit Jamf apps on Close**
 
 - 2.2.1
 

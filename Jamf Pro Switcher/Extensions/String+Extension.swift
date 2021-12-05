@@ -13,6 +13,17 @@ extension String {
     static var jamfPreferencesPath: String {
         NSHomeDirectory().replacingOccurrences(of: "Containers/com.ninxsoft.jamfproswitcher/Data", with: "") + "Preferences/com.jamfsoftware.jss.plist"
     }
+    static var applicationIdentifiers: [String] {
+        [
+            "com.jamfsoftware.CasperAdmin",
+            "com.jamfsoftware.CasperImaging",
+            "com.jamfsoftware.CasperRemote",
+            "com.jamfsoftware.JamfAdmin",
+            "com.jamfsoftware.JamfImaging",
+            "com.jamfsoftware.JamfRemote",
+            "com.jamfsoftware.Recon"
+        ]
+    }
 
     var isValidServerAddress: Bool {
         let regex: String = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"

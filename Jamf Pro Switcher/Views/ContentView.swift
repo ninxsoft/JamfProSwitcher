@@ -31,6 +31,7 @@ struct ContentView: View {
             .listStyle(.plain)
             Divider()
             HStack {
+                Toggle("Quit Jamf Apps on Close", isOn: $model.quitAppsOnClose)
                 Spacer()
                 Button("Add Server") {
                     add()
@@ -45,6 +46,7 @@ struct ContentView: View {
         }
         .onDisappear {
             model.save()
+            quitJamfProApps()
         }
         .onChange(of: model.selectedServer) { server in
             model.setServer(server)
@@ -77,6 +79,17 @@ struct ContentView: View {
         }
 
         return filteredServers
+    }
+
+    private func quitJamfProApps() {
+
+        guard model.quitAppsOnClose else {
+            return
+        }
+
+        NSWorkspace.shared.runningApplications.filter { String.applicationIdentifiers.contains($0.bundleIdentifier ?? "") }.forEach { application in
+            application.terminate()
+        }
     }
 }
 
