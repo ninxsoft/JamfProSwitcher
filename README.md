@@ -27,6 +27,10 @@ If you need to run **Jamf Pro Switcher** on an older operating system, you can s
 
 ## Version History
 
+- 2.4
+
+  - Jamf Pro Switcher will now check for updates on app launch
+
 - 2.3
 
   - Brought back the ability to **Quit Jamf apps on Close**
