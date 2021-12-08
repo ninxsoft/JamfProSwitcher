@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     @ObservedObject var model: Model
     @State private var searchString: String = ""
     private let width: CGFloat = 400
     private let height: CGFloat = 600
+    @AppStorage("RequestedAuthorizationForNotifications") private var requestedAuthorizationForNotifications: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -43,6 +45,7 @@ struct ContentView: View {
         .searchable(text: $searchString)
         .onAppear {
             model.updateServerVersions()
+            checkForUpdates()
         }
         .onDisappear {
             model.save()
@@ -50,6 +53,78 @@ struct ContentView: View {
         }
         .onChange(of: model.selectedServer) { server in
             model.setServer(server)
+        }
+    }
+
+    private func checkForUpdates() {
+
+        guard let url: URL = URL(string: .latestReleaseURL),
+            let infoDictionary: [String: Any] = Bundle.main.infoDictionary,
+            let version: String = infoDictionary["CFBundleShortVersionString"] as? String else {
+            return
+        }
+
+        do {
+            let string: String = try String(contentsOf: url, encoding: .utf8)
+
+            guard let data: Data = string.data(using: .utf8),
+                let dictionary: [String: Any] = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+                let tag: String = dictionary["tag_name"] as? String else {
+                return
+            }
+
+            let latestVersion: String = tag.replacingOccurrences(of: "v", with: "")
+
+            guard version.compare(latestVersion, options: .numeric) == .orderedAscending else {
+                return
+            }
+
+            if !requestedAuthorizationForNotifications {
+                let notificationCenter: UNUserNotificationCenter = .current()
+                notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { _, error in
+
+                    if let error: Error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+
+                    requestedAuthorizationForNotifications = true
+                    sendUpdateNotification(for: latestVersion)
+                }
+            } else {
+                sendUpdateNotification(for: latestVersion)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    private func sendUpdateNotification(for version: String) {
+
+        let notificationCenter: UNUserNotificationCenter = .current()
+        notificationCenter.getNotificationSettings { settings in
+
+            guard [.authorized, .provisional].contains(settings.authorizationStatus) else {
+                return
+            }
+
+            let identifier: String = UUID().uuidString
+
+            let content: UNMutableNotificationContent = UNMutableNotificationContent()
+            content.title = "Update Available"
+            content.body = "Version \(version) is available to download."
+            content.sound = .default
+            content.categoryIdentifier = UNNotificationCategory.Identifier.update
+
+            let trigger: UNTimeIntervalNotificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request: UNNotificationRequest = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+            notificationCenter.add(request) { error in
+
+                if let error: Error = error {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 

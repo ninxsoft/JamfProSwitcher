@@ -10,6 +10,8 @@ import Cocoa
 extension String {
 
     static let homepage: String = "https://github.com/ninxsoft/JamfProSwitcher"
+    static let releasesURL: String = "https://github.com/ninxsoft/JamfProSwitcher/releases"
+    static let latestReleaseURL: String = "https://api.github.com/repos/ninxsoft/JamfProSwitcher/releases/latest"
     static var jamfPreferencesPath: String {
         NSHomeDirectory().replacingOccurrences(of: "Containers/com.ninxsoft.jamfproswitcher/Data", with: "") + "Preferences/com.jamfsoftware.jss.plist"
     }

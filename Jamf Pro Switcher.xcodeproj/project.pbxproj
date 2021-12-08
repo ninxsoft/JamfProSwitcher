@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3994426B2760713900EC0337 /* UNNotificationAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399442692760713900EC0337 /* UNNotificationAction+Extension.swift */; };
+		3994426C2760713900EC0337 /* UNNotificationCategory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994426A2760713900EC0337 /* UNNotificationCategory+Extension.swift */; };
+		3994426E2760716600EC0337 /* UserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994426D2760716600EC0337 /* UserNotificationCenterDelegate.swift */; };
 		574609CC24EC20710000F96B /* JamfProSwitcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609CB24EC20710000F96B /* JamfProSwitcherApp.swift */; };
 		574609CE24EC20710000F96B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574609CD24EC20710000F96B /* ContentView.swift */; };
 		574609D024EC20720000F96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 574609CF24EC20720000F96B /* Assets.xcassets */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		399442692760713900EC0337 /* UNNotificationAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UNNotificationAction+Extension.swift"; sourceTree = "<group>"; };
+		3994426A2760713900EC0337 /* UNNotificationCategory+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UNNotificationCategory+Extension.swift"; sourceTree = "<group>"; };
+		3994426D2760716600EC0337 /* UserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		574609C824EC20710000F96B /* Jamf Pro Switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jamf Pro Switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		574609CB24EC20710000F96B /* JamfProSwitcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamfProSwitcherApp.swift; sourceTree = "<group>"; };
 		574609CD24EC20710000F96B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3994426F2760716B00EC0337 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3994426D2760716600EC0337 /* UserNotificationCenterDelegate.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		574609BF24EC20710000F96B = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +88,7 @@
 				574609D524EC20720000F96B /* Jamf Pro Switcher.entitlements */,
 				574609CB24EC20710000F96B /* JamfProSwitcherApp.swift */,
 				574609EB24EC35560000F96B /* Extensions */,
+				3994426F2760716B00EC0337 /* Helpers */,
 				574609E424EC24DE0000F96B /* Model */,
 				574609DC24EC22150000F96B /* Views */,
 			);
@@ -104,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				574609E924EC35300000F96B /* String+Extension.swift */,
+				399442692760713900EC0337 /* UNNotificationAction+Extension.swift */,
+				3994426A2760713900EC0337 /* UNNotificationCategory+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -137,7 +154,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					574609C724EC20710000F96B = {
 						CreatedOnToolsVersion = 12.0;
@@ -222,8 +239,11 @@
 				574609DE24EC230A0000F96B /* AppDelegate.swift in Sources */,
 				574609E824EC272A0000F96B /* ServerRow.swift in Sources */,
 				57472790274B0008007931FF /* ServerWebsiteButton.swift in Sources */,
+				3994426C2760713900EC0337 /* UNNotificationCategory+Extension.swift in Sources */,
 				574609CE24EC20710000F96B /* ContentView.swift in Sources */,
+				3994426B2760713900EC0337 /* UNNotificationAction+Extension.swift in Sources */,
 				574609CC24EC20710000F96B /* JamfProSwitcherApp.swift in Sources */,
+				3994426E2760716600EC0337 /* UserNotificationCenterDelegate.swift in Sources */,
 				574609E024EC23480000F96B /* AppCommands.swift in Sources */,
 				5747278C274A7007007931FF /* Model.swift in Sources */,
 				5747278E274AFE1B007931FF /* ServerSelectionButton.swift in Sources */,
@@ -369,7 +389,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninxsoft.jamfproswitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -398,7 +418,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ninxsoft.jamfproswitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

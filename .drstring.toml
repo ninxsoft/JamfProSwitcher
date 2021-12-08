@@ -1,4 +1,4 @@
-include = ["Jamf Pro Switcher/**/*.swift"]
+include = ["**/*.swift"]
 align-after-colon = ["parameters", "throws", "returns"]
 parameter-style = "grouped"
 needs-separation = ["description", "parameters", "throws"]
